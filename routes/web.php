@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -16,3 +18,16 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/customers','CustomerController@index');
+$router->post('/customers','CustomerController@store');
+$router->get('/customers/{customer}','CustomerController@show');
+
+$router->get('/schemes','SchemeController@index');
+$router->post('/schemes','SchemeController@store');
+$router->get('/schemes/{scheme}','SchemeController@show');
+
+$router->get('/users/{user}/deposits','EnrollmentController@index');
+$router->get('/deposits','EnrollmentController@store');
+$router->get('/enrollments/{enrollment}/withdraw','EnrollmentController@withdraw');
+$router->get('/enrollments/{enrollment}','EnrollmentController@show');
