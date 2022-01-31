@@ -1,5 +1,6 @@
 <?php
 
+use Tests\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 

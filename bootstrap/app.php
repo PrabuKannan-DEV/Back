@@ -58,7 +58,8 @@ $app->singleton(
 | the default version. You may register other files below as needed.
 |
 */
-
+$app->withEloquent();
+$app->withFacades();
 $app->configure('app');
 
 /*
