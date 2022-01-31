@@ -52,7 +52,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function withdraw($enroll_id)
     {
     $enrollment =$this->enrollments()->find($enroll_id);
-
+    if($enrollment->status!='Active'){
+        return 'Failed';
+    }
     if(\Carbon\Carbon::now()==$enrollment->maturity_date)
     $total = $enrollment->scheme->amount +
      (($enrollment->scheme->amount*($enrollment->scheme->interest/12)*Carbon::parse($enrollment->deposit_date)->diffInMonths()));
@@ -65,12 +67,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'amount'=>$total,
         'transaction_type'=>'withdraw',
     ]);
-    return $this->enrollments()->find($enroll_id)->update([
+    $this->enrollments()->find($enroll_id)->update([
         'status'=>'Inactive',
     'withdrawal_date'=>Carbon::now(),
     ]);
+    return('Success');
     }
-    
     public function enrollments()
     {
         return $this->hasMany(Enrollment::class);

@@ -34,8 +34,8 @@ class EnrollmentController extends Controller
     {
         $user_id = request()->user_id;
         $user = User::find ($user_id);
-        $user->withdraw($enrollment);
-        return json_encode('Success');
+        $message=$user->withdraw($enrollment);
+        return json_encode($message);
     }
     public function show($enrollment)
     {

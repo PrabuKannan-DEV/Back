@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 
